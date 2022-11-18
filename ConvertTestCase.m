@@ -2,6 +2,8 @@ classdef ConvertTestCase < matlab.unittest.TestCase
     methods (Test)
         function tbd(self)
             trial.correct = true;
+            trial.block = 42;
+            trial.isRandom = false;
             trial.simon = '[{"milliseconds":39390.09999996424,"id":1},{"milliseconds":40789.80000001192,"id":2},{"milliseconds":42190.39999997616,"id":1}]';
             trial.responses = '[{"milliseconds":44204,"id":1},{"milliseconds":44897.89999997616,"id":2},{"milliseconds":45672.80000001192,"id":1}]';
             converted = convert(trial);
@@ -36,6 +38,18 @@ classdef ConvertTestCase < matlab.unittest.TestCase
             self.assertEqual(converted(4).lengthpresented, 3);
             self.assertEqual(converted(5).lengthpresented, 3);
             self.assertEqual(converted(6).lengthpresented, 3);
+            self.assertFalse(converted(1).israndom);
+            self.assertFalse(converted(2).israndom);
+            self.assertFalse(converted(3).israndom);
+            self.assertFalse(converted(4).israndom);
+            self.assertFalse(converted(5).israndom);
+            self.assertFalse(converted(6).israndom);
+            self.assertEqual(converted(1).block, 42);
+            self.assertEqual(converted(2).block, 42);
+            self.assertEqual(converted(3).block, 42);
+            self.assertEqual(converted(4).block, 42);
+            self.assertEqual(converted(5).block, 42);
+            self.assertEqual(converted(6).block, 42);
         end
     end
 end

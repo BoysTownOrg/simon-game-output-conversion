@@ -16,5 +16,7 @@ for i = 1:numel(responses)
 end
 for i = 1:numel(converted)
     converted(i).lengthpresented = numel(simon);
+    converted(i).block = trial.block;
+    converted(i).israndom = trial.isRandom;
 end
 end
