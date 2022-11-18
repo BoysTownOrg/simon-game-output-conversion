@@ -7,6 +7,11 @@ classdef ConvertTestCase < matlab.unittest.TestCase
             converted = convert(trial);
             self.assertEqual(numel(converted), 6);
             self.assertEqual(converted(1).responsetime, 39390.09999996424);
+            self.assertEqual(converted(2).responsetime, 40789.80000001192);
+            self.assertEqual(converted(3).responsetime, 42190.39999997616);
+            self.assertEqual(converted(4).responsetime, 44204);
+            self.assertEqual(converted(5).responsetime, 44897.89999997616);
+            self.assertEqual(converted(6).responsetime, 45672.80000001192);
         end
     end
 end
