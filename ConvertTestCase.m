@@ -18,6 +18,12 @@ classdef ConvertTestCase < matlab.unittest.TestCase
             self.assertEqual(converted(4).id, 1);
             self.assertEqual(converted(5).id, 2);
             self.assertEqual(converted(6).id, 1);
+            self.assertEqual(converted(1).issimon, 1);
+            self.assertEqual(converted(2).issimon, 1);
+            self.assertEqual(converted(3).issimon, 1);
+            self.assertEqual(converted(4).issimon, 0);
+            self.assertEqual(converted(5).issimon, 0);
+            self.assertEqual(converted(6).issimon, 0);
         end
     end
 end
