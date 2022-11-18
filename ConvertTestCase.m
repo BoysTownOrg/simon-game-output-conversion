@@ -6,6 +6,7 @@ classdef ConvertTestCase < matlab.unittest.TestCase
             trial.simon = '[{"milliseconds":39390.09999996424,"id":1},{"milliseconds":40789.80000001192,"id":2},{"milliseconds":42190.39999997616,"id":1}]';
             converted = convert(trial);
             self.assertEqual(numel(converted), 6);
+            self.assertEqual(converted(1).responsetime, 39390.09999996424);
         end
     end
 end
