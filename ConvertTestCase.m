@@ -30,6 +30,12 @@ classdef ConvertTestCase < matlab.unittest.TestCase
             self.assertTrue(converted(4).correct);
             self.assertTrue(converted(5).correct);
             self.assertTrue(converted(6).correct);
+            self.assertEqual(converted(1).lengthpresented, 3);
+            self.assertEqual(converted(2).lengthpresented, 3);
+            self.assertEqual(converted(3).lengthpresented, 3);
+            self.assertEqual(converted(4).lengthpresented, 3);
+            self.assertEqual(converted(5).lengthpresented, 3);
+            self.assertEqual(converted(6).lengthpresented, 3);
         end
     end
 end

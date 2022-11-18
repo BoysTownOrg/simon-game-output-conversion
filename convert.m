@@ -14,4 +14,7 @@ for i = 1:numel(responses)
     converted(i+numel(simon)).issimon = false;
     converted(i+numel(simon)).correct = trial.correct;
 end
+for i = 1:numel(converted)
+    converted(i).lengthpresented = numel(simon);
+end
 end
