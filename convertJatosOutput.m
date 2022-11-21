@@ -1,13 +1,16 @@
 function convertJatosOutput
 [file, path] = uigetfile('*.txt');
-lines = readlines([path filesep file]);
-circles = jsondecode(lines(2));
-circlesTable = table();
-for i = 3:numel(circles)-1
-    subtable = struct2table(convert(circles{i}));
-    participant_id = repmat(circles{1}.response.participant_id, height(subtable), 1);
-    trial = repmat(i - 2, height(subtable), 1);
-    circlesTable = [circlesTable; addvars(subtable, participant_id, trial)];
+lines = readlines([path, filesep, file]);
+tasks = {'colors', 'squares'};
+for task = 1:2
+    trials = jsondecode(lines(task+1));
+    outputTable = table();
+    for i = 3:numel(trials)-1
+        trialTable = struct2table(convert(trials{i}));
+        participant_id = repmat(trials{1}.response.participant_id, height(trialTable), 1);
+        trial = repmat(i - 2, height(trialTable), 1);
+        outputTable = [outputTable; addvars(trialTable, participant_id, trial)];
+    end
+    writetable(outputTable, ['simon-', tasks{task}, '-task', '_id_', trials{1}.response.participant_id, '.csv']);
 end
-writetable(circlesTable, [file(1:end-4), '_id_', circles{1}.response.participant_id, '.csv']);
 end
