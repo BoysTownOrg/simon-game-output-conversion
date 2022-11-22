@@ -11,6 +11,7 @@ for i = 1:numel(tasks)
     taskName = '?';
     participantID = '?';
     outputTable = table();
+    simonTrialIndex = 1;
     try
         for j = 1:numel(trials)
             if isfield(trials{j}, "response") && isfield(trials{j}.response, "participant_id")
@@ -26,7 +27,8 @@ for i = 1:numel(tasks)
                 end
                 trialTable = struct2table(convert(trials{j}), 'AsArray', true);
                 participant_id = repmat(string(participantID), height(trialTable), 1);
-                trial = repmat(j - 2, height(trialTable), 1);
+                trial = repmat(simonTrialIndex, height(trialTable), 1);
+                simonTrialIndex = simonTrialIndex + 1;
                 outputTable = [outputTable; addvars(trialTable, participant_id, trial)];
             end
         end
