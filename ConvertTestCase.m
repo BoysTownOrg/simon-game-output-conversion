@@ -89,5 +89,28 @@ classdef ConvertTestCase < matlab.unittest.TestCase
             self.assertEqual(converted(5).lengthpresented, 3);
             self.assertEqual(converted(6).lengthpresented, 3);
         end
+
+        function noResponse(self)
+            trial.correct = true;
+            trial.simon = '[{"milliseconds":39390.09999996424,"id":1},{"milliseconds":40789.80000001192,"id":2},{"milliseconds":42190.39999997616,"id":1}]';
+            trial.responses = '[]';
+            converted = convert(trial);
+            self.assertEqual(numel(converted), 3);
+            self.assertEqual(converted(1).responsetime, 39390.09999996424);
+            self.assertEqual(converted(2).responsetime, 40789.80000001192);
+            self.assertEqual(converted(3).responsetime, 42190.39999997616);
+            self.assertEqual(converted(1).id, 1);
+            self.assertEqual(converted(2).id, 2);
+            self.assertEqual(converted(3).id, 1);
+            self.assertTrue(converted(1).issimon);
+            self.assertTrue(converted(2).issimon);
+            self.assertTrue(converted(3).issimon);
+            self.assertEmpty(converted(1).correct);
+            self.assertEmpty(converted(2).correct);
+            self.assertEmpty(converted(3).correct);
+            self.assertEqual(converted(1).lengthpresented, 3);
+            self.assertEqual(converted(2).lengthpresented, 3);
+            self.assertEqual(converted(3).lengthpresented, 3);
+        end
     end
 end
