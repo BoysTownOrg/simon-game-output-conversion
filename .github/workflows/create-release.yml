@@ -16,7 +16,7 @@ jobs:
         run: echo "function v = version, v = '${{ steps.get_version.outputs.VERSION }}'; end" >version.m
       - name: create GitHub release
         run: |
-          zip simon-game-output-conversion-v${{ steps.get_version.outputs.VERSION }}.zip convert.m convertJatosOutput.m version.m
+          zip simon-game-output-conversion-v${{ steps.get_version.outputs.VERSION }}.zip *.m
           gh release create v${{ steps.get_version.outputs.VERSION }} simon-game-output-conversion-v${{ steps.get_version.outputs.VERSION }}.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
