@@ -5,7 +5,7 @@ if isequal(file, 0) || isequal(path, 0)
 end
 lines = readlines([path, filesep, file]);
 lines(lines.strlength == 0) = [];
-tasks = arrayfun(@(s)jsondecode(s), lines, 'UniformOutput', false);
+tasks = arrayfun(@(s)parseLine(s), lines, 'UniformOutput', false);
 writer = SimonLengthsCsvWriter('simon-lengths.csv');
 for i = 1:numel(tasks)
     trials = tasks{i};
@@ -30,4 +30,8 @@ for i = 1:numel(tasks)
     end
     writer.writeRow(participantID, taskName, lengths);
 end
+end
+
+function json = parseLine(line)
+json = jsondecode(line);
 end
