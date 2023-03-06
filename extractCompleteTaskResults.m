@@ -1,3 +1,5 @@
 function line = extractCompleteTaskResults(line)
-line = "[" + line.extractAfter('}[');
+if line.contains('}[')
+    line = "[" + line.extractAfter('}[');
+end
 end
