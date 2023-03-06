@@ -33,5 +33,5 @@ end
 end
 
 function json = parseLine(line)
-json = jsondecode(line);
+json = jsondecode(extractCompleteTaskResults(line));
 end
